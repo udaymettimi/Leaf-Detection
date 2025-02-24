@@ -5,7 +5,7 @@ import cv2
 from PIL import Image
 
 model_path = "trained_plant_disease_model.keras"
-gdrive_url = "https://drive.google.com/file/d/12yPyxbOHEgZLzqyVELThOkoX9sM7-rUb/view?usp=sharing"  # Replace with actual Google Drive file URL
+gdrive_url = "https://drive.google.com/file/d/13FPoqxOZE9_V_zP6cErcVfaBm7tulBf5/view?usp=sharing"  # Replace with actual Google Drive file URL
 
 # Function to download model if not found
 def download_model():
