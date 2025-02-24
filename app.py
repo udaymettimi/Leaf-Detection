@@ -2,20 +2,27 @@ import streamlit as st
 import tensorflow as tf
 import numpy as np
 import cv2
+import os
+import gdown
 from PIL import Image
 
+# Model path
 model_path = "trained_plant_disease_model.keras"
-gdrive_url = "https://drive.google.com/file/d/13FPoqxOZE9_V_zP6cErcVfaBm7tulBf5/view?usp=sharing"  # Replace with actual Google Drive file URL
+gdrive_url = "https://drive.google.com/uc?id=13FPoqxOZE9_V_zP6cErcVfaBm7tulBf5"  # Modified Google Drive link
 
-# Function to download model if not found
+# Function to download the model if not found
 def download_model():
     if not os.path.exists(model_path):
-        st.warning("Downloading model from Google Drive... ⏳")
+        st.warning("📥 Downloading model from Google Drive... ⏳")
         try:
             gdown.download(gdrive_url, model_path, quiet=False)
             st.success("✅ Model downloaded successfully!")
         except Exception as e:
             st.error(f"⚠ Model download failed: {e}")
+
+# **Call download_model() before loading**
+download_model()
+
 # Load the trained model once and cache it
 @st.cache_resource()
 def load_model():
@@ -46,8 +53,6 @@ def model_prediction(image, model):
 
         # Resize image to match model input size (128x128)
         img_resized = cv2.resize(img_array, (128, 128))
-
-        
 
         # Expand dimensions to create a batch of size 1
         img_expanded = np.expand_dims(img_resized, axis=0)
@@ -99,4 +104,3 @@ elif app_mode == "🔬 DISEASE RECOGNITION":
 
 if __name__ == "__main__":
     st.write("✅ Ready for Predictions")
-
