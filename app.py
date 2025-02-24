@@ -81,7 +81,8 @@ elif app_mode == "🔬 DISEASE RECOGNITION":
 
     if test_image is not None:
         image = Image.open(test_image).convert("RGB")  # Convert to RGB format
-        st.image(image, caption="📷 Uploaded Image", use_column_width=True)
+        st.image(image, caption="📷 Uploaded Image", use_container_width=True)
+
 
         if st.button("🔍 Predict"):
             if model is None:
